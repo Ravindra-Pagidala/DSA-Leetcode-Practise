@@ -1,0 +1,1 @@
+SELECT     p.product_id,    ROUND(        COALESCE(SUM(p.price * u.units) / SUM(u.units), 0)FROM prices p    ON p.product_id = u.product_id    , 2) AS average_priceLEFT JOIN unitssold u
