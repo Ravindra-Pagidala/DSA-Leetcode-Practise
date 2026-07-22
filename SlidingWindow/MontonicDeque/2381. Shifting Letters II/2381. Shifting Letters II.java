@@ -9,27 +9,25 @@
 9         int val = shift[2]==0?-1:1;
 10         update(df, left, right, val);
 11       }
-12      int ps[] = new int[len+1];
-13      ps[0] = df[0];
-14
-15      for(int i =1; i<ps.length; i++){
-16         ps[i]=ps[i-1]+df[i];
-17        // System.out.print(ps[i]+ );
-18      }
-19
-20      StringBuilder sb = new StringBuilder();
-21      for(int i=0; i<ps.length-1; i++) {
-22         char c = s.charAt(i);
-23        // System.out.println(c);
-24       c=(char)(((c - 'a') + (ps[i] % 26) + 26) % 26 + 'a');
-25         sb.append(c);
-26      }
-27
-28     return sb.toString();
-29    }
-30
-31    public void update(int df[], int left, int right, int val) {
-32        df[left]+=val;
-33        df[right+1]-=val;
-34    }
-35}
+12
+13      for(int i =1; i<df.length; i++){
+14         df[i]+=df[i-1];
+15        // System.out.print(ps[i]+ );
+16      }
+17
+18      StringBuilder sb = new StringBuilder();
+19      for(int i=0; i<df.length-1; i++) {
+20         char c = s.charAt(i);
+21        // System.out.println(c);
+22       c=(char)(((c - 'a') + (df[i] % 26) + 26) % 26 + 'a');
+23         sb.append(c);
+24      }
+25
+26     return sb.toString();
+27    }
+28
+29    public void update(int df[], int left, int right, int val) {
+30        df[left]+=val;
+31        df[right+1]-=val;
+32    }
+33}
