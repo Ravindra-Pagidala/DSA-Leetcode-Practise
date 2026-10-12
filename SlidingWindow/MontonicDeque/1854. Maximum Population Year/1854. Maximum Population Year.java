@@ -1,25 +1,22 @@
 1class Solution {
 2    public int maximumPopulation(int[][] logs) {
-3        // Years range 1950-2050, offset by 1950 to use array index 0-100
-4        int[] arr = new int[101];
-5
-6        for (int[] log : logs) {
-7            int x = log[0] - 1950;
-8            int y = log[1] - 1950;
-9            arr[x] += 1;   // person enters at birth year
-10            arr[y] -= 1;   // person exits at death year (not counted that year)
-11        }
-12
-13        // Prefix sum gives actual population at each year
-14        int maxPopulation = Integer.MIN_VALUE, maxYear = 0, population = 0;
-15        for (int i = 0; i < arr.length; i++) {
-16            population += arr[i];
-17            // strict > ensures earliest year wins when tie
-18            if (population > maxPopulation) {
-19                maxPopulation = population;
-20                maxYear = 1950 + i;
-21            }
-22        }
-23        return maxYear;
-24    }
-25}
+3       int diff[] = new int[101];
+4       for(int log[] : logs) {
+5             int start = log[0]-1950;
+6             int end = log[1]-1950;
+7             diff[start]+=1;
+8             diff[end]-=1;
+9       }
+10       int max = Integer.MIN_VALUE, year = 0, sum = 0;
+11       for(int i =0; i< 101; i++) {
+12            sum+=diff[i];
+13           if(sum > max) {
+14              max = sum;
+15              year = i+1950;
+16            //  System.out.println(max + +year);
+17           }
+18       }
+19
+20       return year; 
+21    }
+22}
